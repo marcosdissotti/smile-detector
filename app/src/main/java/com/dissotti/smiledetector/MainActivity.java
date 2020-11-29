@@ -9,7 +9,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+//import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity  {
     String detectionConfidence;
 
     Button btTakePhoto, btReturn;
-    ImageView imgView;
+//    ImageView imgView;
 
 
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
         btTakePhoto = (Button)findViewById(R.id.btnTakePhoto);
-        imgView = (ImageView) findViewById(R.id.imageView);
+//        imgView = (ImageView) findViewById(R.id.imageView);
 
         btTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity  {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
 
-            imgView = (ImageView)findViewById(R.id.imageView);
+//            imgView = (ImageView)findViewById(R.id.imageView);
 
             Log.d("file ", "onActivityResult   == " + requestCode);
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity  {
         fos.write(bitmapData);
         fos.flush();
         fos.close();
-        imgView.setImageBitmap(bitmap);
+//        imgView.setImageBitmap(bitmap);
         Log.d("file ", "file   == " + file);
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("**/*//*"), file);
@@ -115,25 +115,43 @@ public class MainActivity extends AppCompatActivity  {
         call.enqueue(new Callback<ServerResponse>() {
             @Override
             public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
-                System.out.println("ENTROUUUU");
+
                 ServerResponse serverResponse = response.body();
 
 //                System.out.println(serverResponse.getDetectionConfidence());
-//                detectionConfidence = serverResponse.getDetectionConfidence();
+                detectionConfidence = serverResponse.getDetectionConfidence();
 //                System.out.println("JOY");
-//                joy = serverResponse.getJoy();
+                joy = serverResponse.getJoy();
 //                System.out.println(serverResponse.getJoy());
 //                System.out.println("SORROW");
-//                sorrow = serverResponse.getSorrow();
+                sorrow = serverResponse.getSorrow();
 //                System.out.println(serverResponse.getSorrow());
 
                 if((joy != null) || (sorrow != null) ){
                    if(joy == true) {
                         setContentView(R.layout.smile_screen);
+
+                       btReturn = (Button)findViewById(R.id.btnVoltar);
+
+                       btReturn.setOnClickListener(new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+                               setContentView(R.layout.activity_main);
+                           }
+                       });
                     }
 
                     if(sorrow == true){
                         setContentView(R.layout.sad_screen);
+
+                        btReturn = (Button)findViewById(R.id.btnVoltar);
+
+                        btReturn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                setContentView(R.layout.activity_main);
+                            }
+                        });
                     }
 
                     if(joy == false && sorrow == false){
