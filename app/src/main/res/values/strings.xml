@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SmileDetector</string>
+    <string name="smile">&#128513;</string>
+    <string name="sad">&#128549;</string>
+</resources>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ops!! O Google Vision não conseguiu detectar a emoção! Por favor, verifique a qualidade da sua foto!"
+        />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Obs: tire foto de pessoas reais e evite imagens de monitores!"
+        />
+
+
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Voltar"
+        android:background="@drawable/rounded_corners"
+        android:textColor="#fff"
+
+        />
+
+
+
+
+</LinearLayout>
